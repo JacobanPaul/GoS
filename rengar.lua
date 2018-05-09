@@ -1,6 +1,6 @@
 require('Inspired')
 require('IPrediction')
-require('OpenPredict')
+
 
 function Mode()
 	if _G.IOW_Loaded and IOW:Mode() then
@@ -10,31 +10,9 @@ function Mode()
 	end
 end
 
-OnProcessSpell(function(unit, spell)
-	if unit == myHero then
-		if spell.name:lower():find("attack") then
-			DelayAction(function()
-				AA = true
-			end, GetWindUp(myHero)+0.01)
-		else
-			AA = false
-		end
-	end
-end)
 
-SpawnPos = nil
-Recalling = {}
-local GlobalTimer = 0
-OnObjectLoad(function(Object)
-	if GetObjectType(Object) == Obj_AI_SpawnPoint and GetTeam(Object) ~= GetTeam(myHero) then
-		SpawnPos = Object
-	end
-end)
-OnCreateObj(function(Object)
-	if GetObjectType(Object) == Obj_AI_SpawnPoint and GetTeam(Object) ~= GetTeam(myHero) then
-		SpawnPos = Object
-	end
-end)
+
+
 
 
 
@@ -49,29 +27,29 @@ end)
 
 
 
---OnDraw(function(myHero)
---	for _, enemy in pairs(GetEnemyHeroes()) do
---		
---			if GetCastName(enemy,SUMMONER_1):lower():find("smite") and SUMMONER_1 or (GetCastName(enemy,SUMMONER_2):lower():find("smite") and SUMMONER_2 or nil) then
---				DrawJng = WorldToScreen(1,GetOrigin(myHero).x, GetOrigin(myHero).y, GetOrigin(myHero).z)
---				if IsObjectAlive(enemy) then
---					if ValidTarget(enemy) then
---						if GetDistance(myHero, enemy) > 3000 then
---							DrawText("Jungler: Visible", 17, DrawJng.x-45, DrawJng.y+10, 0xff32cd32)
---						else
---							DrawText("Jungler: Near", 17, DrawJng.x-43, DrawJng.y+10, 0xffff0000)
---						end
---					else
---						DrawText("Jungler: Invisible", 17, DrawJng.x-55, DrawJng.y+10, 0xffffd700)
---					end
---				else
---					DrawText("Jungler: Dead", 17, DrawJng.x-45, DrawJng.y+10, 0xff32cd32)
---				end
---			end
---		
---		
---	end
---end)
+OnDraw(function(myHero)
+	for _, enemy in pairs(GetEnemyHeroes()) do
+		
+			if GetCastName(enemy,SUMMONER_1):lower():find("smite") and SUMMONER_1 or (GetCastName(enemy,SUMMONER_2):lower():find("smite") and SUMMONER_2 or nil) then
+				DrawJng = WorldToScreen(1,GetOrigin(myHero).x, GetOrigin(myHero).y, GetOrigin(myHero).z)
+				if IsObjectAlive(enemy) then
+					if ValidTarget(enemy) then
+						if GetDistance(myHero, enemy) > 3000 then
+							DrawText("Jungler: Visible", 17, DrawJng.x-45, DrawJng.y+10, 0xff32cd32)
+						else
+							DrawText("Jungler: Near", 17, DrawJng.x-43, DrawJng.y+10, 0xffff0000)
+						end
+					else
+						DrawText("Jungler: Invisible", 17, DrawJng.x-55, DrawJng.y+10, 0xffffd700)
+					end
+				else
+					DrawText("Jungler: Dead", 17, DrawJng.x-45, DrawJng.y+10, 0xff32cd32)
+				end
+			end
+		
+		
+	end
+end)
 
 
 
@@ -152,9 +130,9 @@ function LevelUp()
 		
 		end
 	
-	end
+	end  
 
-
+-- Im The jungler
 
 
 
@@ -195,10 +173,10 @@ if "Rengar" == GetObjectName(myHero) then
 	
 	CastSpell(_Q)
 	if _G.IOW then
-						IOW:ResetAA()
-					elseif _G.GoSWalkLoaded then
-						_G.GoSWalk:ResetAttack()
-					end
+		IOW:ResetAA()
+	elseif _G.GoSWalkLoaded then
+		_G.GoSWalk:ResetAttack()
+	end
  
  end
 
@@ -228,25 +206,14 @@ function useE(target)
 		
 	end
 end
-	
 
 
  function Combo()
-	if Mode() == "Combo" then
-
-		if GetItemSlot(myHero, 3142) >= 1 and ValidTarget(target, 1000) then
-					if CanUseSpell(myHero, GetItemSlot(myHero, 3142)) == READY then
-						CastSpell(GetItemSlot(myHero, 3142))
-					end
-				end
-
-
-		
+	if Mode() == "Combo" then	
 			if CanUseSpell(myHero,_Q) == READY  then
 				if ValidTarget(target, GetRange(myHero)+GetHitBox(myHero)+50) then
 					
 						useQ(target)
-					
 				end
 			end
 
@@ -260,7 +227,7 @@ end
 		    end
 		
 		
-			if CanUseSpell(myHero,_Q) ~= READY and CanUseSpell(myHero,_W) == READY and GetCurrentMana(myHero) < 3 and not QCast and not ECast then
+			if CanUseSpell(myHero,_W) == READY  then
 				if ValidTarget(target,GetHitBox(myHero)+350) then
 					useW(target)
 				
@@ -268,18 +235,22 @@ end
 			end
 
 
-		
+		if GetItemSlot(myHero, 3142) >= 1 and ValidTarget(target, 1000) then
+					if CanUseSpell(myHero, GetItemSlot(myHero, 3142)) == READY then
+						CastSpell(GetItemSlot(myHero, 3142))
+					end
+				end
 		
 			
 
 				if Ready(Smite) then
-                        for i, enemy in pairs(GetEnemyHeroes()) do
+                        
                                 if ValidTarget(target, 600)  then
                                         
-                                        CastTargetSpell(enemy, Smite)
+                                        CastTargetSpell(target, Smite)
                                         
                                 end
-                        end
+                        
                 end
 
 	end
@@ -385,7 +356,7 @@ end
 
 end
 
--- Smite
+-- SmiteGod
 
 if not pcall( require, "Inspired" ) then PrintChat("You are missing Inspired.lua!") return end
 
