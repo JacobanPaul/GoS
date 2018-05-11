@@ -1263,7 +1263,7 @@ if smiteON == true then
 				CastTargetSpell(enemy,useSmite)
 			end
 		end
-	elseif 	 GetCastName(myHero,useSmite) == "s5_summonersmiteplayerganker" then
+	elseif 	 GetCastName(myHero,useSmite) == "s5_summonersmiteplayerganker" or GetCastName(myHero,useSmite) == "s5_summonersmiteduel" or GetCastName(myHero,useSmite) == "s5_summonersmitequick" or GetCastName(myHero,useSmite) == "summonersmite" or GetCastName(myHero,useSmite) == "itemsmiteaoe" then
 		for i,enemy in pairs(GetEnemyHeroes()) do
 			if ValidTarget(enemy, 750)  then
 				CastTargetSpell(enemy,useSmite)
