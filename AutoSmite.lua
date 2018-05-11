@@ -1257,13 +1257,13 @@ OnTick(function(myHero)
 smiteDMG = (({[1]=390,[2]=410,[3]=430,[4]=450,[5]=480,[6]=510,[7]=540,[8]=570,[9]=600,[10]=640,[11]=680,[12]=720,[13]=760,[14]=800,[15]=850,[16]=900,[17]=950,[18]=1000})[GetLevel(myHero)])
 
 if smiteON == true then
-	if GetCastName(myHero,useSmite) == "s5_summonersmiteplayerganker" and smiteMenu.ks:Value() then
+	if CanUseSpell(myHero,useSmite) == READY and smiteMenu.ks:Value() then
 		for i,enemy in pairs(GetEnemyHeroes()) do
 			if ValidTarget(enemy, 750) and GetCurrentHP(enemy) + GetDmgShield(enemy) <= 20+8*GetLevel(myHero) then
 				CastTargetSpell(enemy,useSmite)
 			end
 		end
-	elseif 	 GetCastName(myHero,useSmite) == "s5_summonersmiteplayerganker" or GetCastName(myHero,useSmite) == "s5_summonersmiteduel" or GetCastName(myHero,useSmite) == "s5_summonersmitequick" or GetCastName(myHero,useSmite) == "summonersmite" or GetCastName(myHero,useSmite) == "itemsmiteaoe" then
+	elseif 	 CanUseSpell(myHero,useSmite) == READY then
 		for i,enemy in pairs(GetEnemyHeroes()) do
 			if ValidTarget(enemy, 750)  then
 				CastTargetSpell(enemy,useSmite)
