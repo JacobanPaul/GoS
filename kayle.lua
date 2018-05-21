@@ -1,32 +1,3 @@
---  _______  _______  ____     __   __  _______  _______  __   __  _______ 
--- |       ||  _    ||    |   |  | |  ||   _   ||       ||  | |  ||       |
--- |_     _|| | |   | |   |   |  |_|  ||  |_|  ||  _____||  | |  ||   _   |
---   |   |  | | |   | |   |   |       ||       || |_____ |  |_|  ||  | |  |
---   |   |  | |_|   | |   |   |_     _||       ||_____  ||       ||  |_|  |
---   |   |  |       | |   |     |   |  |   _   | _____| ||       ||       |
---   |___|  |_______| |___|     |___|  |__| |__||_______||_______||_______|
---
--- Current version: 1.0.6.1
--- ===============
--- == Changelog ==
--- ===============
--- 1.0.6.1
--- + Added Q to FFlee
--- 1.0.6
--- + Added Flee
--- 1.0.5
--- + Finished spell database
--- 1.0.4
--- + Imported spell database (50% done)
--- + Added W usage and lasthit with Q
--- 1.0.3
--- + Added Auto-Ignite
--- 1.0.2
--- + Added library checker
--- 1.0.1
--- + Added offensive items usage
--- 1.0
--- + Initial release
 
 if FileExist(COMMON_PATH .. "HPred.lua") then
 	require 'HPred'
