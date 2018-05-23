@@ -278,7 +278,7 @@ function LoadScript()
 
 		
 	Menu.Skills:MenuElement({id = "W", name = "Heal", type = MENU})	
-	Menu.Skills.W:MenuElement({id = "Targets", name = "Heal Targets and minimum health to start", type = MENU})	
+	Menu.Skills.W:MenuElement({id = "Targets", name = "Heal Targets ", type = MENU})	
 	for i = 1, LocalGameHeroCount() do
 		local hero = LocalGameHero(i)
 		if hero and hero.isAlly then
@@ -293,7 +293,7 @@ function LoadScript()
 		
 	Menu.Skills:MenuElement({id = "R", name = "Intervention/Kayle R", type = MENU})
 	Menu.Skills.R:MenuElement({id = "Targets", name = "Targets", type = MENU})
-	Menu.Skills.R:MenuElement({id = "Auto", name = "Auto Cast", value = true, toggle = true })
+	Menu.Skills.R:MenuElement({id = "Auto", name = "Auto Cast and minimum health to start the check", value = true, toggle = true })
 	for i = 1, LocalGameHeroCount() do
 		local hero = LocalGameHero(i)
 		if hero and hero.isAlly then
