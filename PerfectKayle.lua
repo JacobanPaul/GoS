@@ -240,10 +240,10 @@ function NearestEnemy(origin, range)
 	end
 end
 
-if FileExist(COMMON_PATH .. "Auto/Alpha.lua") then
+if FileExist(COMMON_PATH .. "Alpha.lua") then
 	require 'Alpha'
 else
-	print("ERROR: Auto/Alpha.lua is not present in your Scripts/Common folder. Please re open loader.")
+	print("ERROR: Alpha.lua is not present in your Scripts/Common folder. Please re open loader.")
 end
 
 if not _G.SDK or not _G.SDK.TargetSelector then
